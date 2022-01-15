@@ -1,13 +1,3 @@
-TOKEN = os.getenv("DISCORD_TOKEN")
-
-@bot.event
-async def on_ready():
-    print(f"Logged in as {bot.user.name}({bot.user.id})")
-
-@bot.command()
-async def ping(ctx):
-    await ctx.send("pong")
-
 import asyncio
 import functools
 import itertools
@@ -20,7 +10,17 @@ import discord
 import youtube_dlc
 from async_timeout import timeout
 from discord.ext import commands
-from keep_alive import keep_alive
+
+TOKEN = os.getenv("DISCORD_TOKEN")
+
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user.name}({bot.user.id})")
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send("pong")
+
 
 # Silence useless bug reports messages
 youtube_dlc.utils.bug_reports_message = lambda: ''
