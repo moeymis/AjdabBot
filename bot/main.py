@@ -13,19 +13,8 @@ from discord.ext import commands
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-@bot.event
-async def on_ready():
-    print(f"Logged in as {bot.user.name}({bot.user.id})")
-
-@bot.command()
-async def ping(ctx):
-    await ctx.send("pong")
-
-
 # Silence useless bug reports messages
 youtube_dlc.utils.bug_reports_message = lambda: ''
-
-
 class VoiceError(Exception):
     pass
 
