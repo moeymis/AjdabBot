@@ -27,6 +27,8 @@ setuptools.setup(
         "python-dotenv",
         "PyNaCl",
         "dnspython",
+        "youtube_dlc",
+        "itertools",
     ],
     python_requires='>=3.6',
 )

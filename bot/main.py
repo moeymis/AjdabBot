@@ -1,3 +1,14 @@
+bot = commands.Bot(command_prefix="!")
+TOKEN = os.getenv("DISCORD_TOKEN")
+
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user.name}({bot.user.id})")
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send("pong")
+
 import asyncio
 import functools
 import itertools
@@ -497,5 +508,6 @@ async def on_message(message):
     time.sleep(1)
     sentence = message.content.split("بلعه ل", 1)[1] + " بلاع"
     await message.channel.send(sentence)
-keep_alive()
-bot.run(os.getenv("TOKEN"))
+
+server.server()
+bot.run(TOKEN)
