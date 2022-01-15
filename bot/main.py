@@ -1,4 +1,3 @@
-bot = commands.Bot(command_prefix="!")
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 @bot.event
