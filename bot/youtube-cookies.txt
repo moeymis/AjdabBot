@@ -1,0 +1,4 @@
+# Netscape HTTP Cookie File
+.youtube.com	TRUE	/	TRUE	0	__Secure-3PAPISID	l-KTzPraSvhWHgQ8/AhZ_Tz9_hCFf0xPz2
+.youtube.com	TRUE	/	TRUE	0	CONSENT	PENDING+232
+.youtube.com	TRUE	/	TRUE	0	PREF	f4=4000000&tz=Asia.Damascus&f6=40000000&f5=20000
