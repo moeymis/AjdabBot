@@ -10,6 +10,11 @@ import discord
 import youtube_dlc
 from async_timeout import timeout
 from discord.ext import commands
+import ctypes
+import ctypes.util
+
+find_opus = ctypes.util.find_library('opus')
+discord.opus.load_opus(find_opus)
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 # Silence useless bug reports messages
