@@ -88,7 +88,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         else:
           print("Try get info")
           info = data['entries'][0]
-          print(info)
+          print(info['url'])
           return cls(ctx, discord.FFmpegPCMAudio(info['url'], **cls.FFMPEG_OPTIONS), data=info)
 
     @staticmethod
