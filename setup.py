@@ -28,7 +28,7 @@ setuptools.setup(
         "PyNaCl",
         "dnspython",
         "youtube_dlc",
-        "itertools",
+        "itertools"
     ],
     python_requires='>=3.6',
 )
