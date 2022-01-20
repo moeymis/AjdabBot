@@ -451,19 +451,20 @@ class Music(commands.Cog):
         A list of these sites can be found here: https://rg3.github.io/youtube-dl/supportedsites.html
         """
 
-        if not ctx.voice_state.voice:
-            await ctx.invoke(self._join)
 
         async with ctx.typing():
             try:
                 print("start source")
                 source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop)
-                print(source)
             except YTDLError as e:
                 await ctx.send('An error occurred while processing this request: {}'.format(str(e)))
             else:
+                if not ctx.voice_state.voice:
+                    print("Not joined")
+                    await ctx.invoke(self._join)
+                else:
+                    print("Joined")
                 song = Song(source)
-                print(song)
                 await ctx.voice_state.songs.put(song)
                 await ctx.send('Enqueued {}'.format(str(source)))
                 await ctx.send("انا و باستعمالي هذا البوت أقر بأستذة موي")
