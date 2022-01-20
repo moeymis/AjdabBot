@@ -11,7 +11,6 @@ import youtube_dlc
 from async_timeout import timeout
 from discord.ext import commands
 TOKEN = os.getenv("DISCORD_TOKEN")
-print(ffmpeg)
 
 # Silence useless bug reports messages
 youtube_dlc.utils.bug_reports_message = lambda: ''
