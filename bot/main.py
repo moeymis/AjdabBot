@@ -92,7 +92,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         if data is None:
             raise YTDLError('Couldn\'t find anything that matches `{}`'.format(search))
 
-        if 'entries' not in data:
+        if 'entries' not in data and not search.startswith('انا عبد'):
             raise YTDLError('Couldn\'t find anything that matches `{}`'.format(search))
         else:
           print("Try get info")
