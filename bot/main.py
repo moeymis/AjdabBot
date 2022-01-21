@@ -293,7 +293,6 @@ class Music(commands.Cog):
         ctx.voice_state.voice = await destination.connect()
 
     @commands.command(name='summon', aliases=['تعا لهون'])
-    @commands.has_permissions(manage_guild=True)
     async def _summon(self, ctx: commands.Context, *, channel: discord.VoiceChannel = None):
         """Summons the bot to a voice channel.
 
@@ -311,7 +310,6 @@ class Music(commands.Cog):
         ctx.voice_state.voice = await destination.connect()
 
     @commands.command(name='leave', aliases=['disconnect', 'فتك'])
-    @commands.has_permissions(manage_guild=True)
     async def _leave(self, ctx: commands.Context):
         """Clears the queue and leaves the voice channel."""
 
@@ -341,7 +339,6 @@ class Music(commands.Cog):
         await ctx.send(embed=ctx.voice_state.current.create_embed())
 
     @commands.command(name='pause', aliases=['هدي شوي'])
-    @commands.has_permissions(manage_guild=True)
     async def _pause(self, ctx: commands.Context):
         """Pauses the currently playing song."""
 
@@ -350,7 +347,6 @@ class Music(commands.Cog):
             await ctx.message.add_reaction('⏯')
 
     @commands.command(name='resume', aliases=['كمل'])
-    @commands.has_permissions(manage_guild=True)
     async def _resume(self, ctx: commands.Context):
         """Resumes a currently paused song."""
 
@@ -359,7 +355,6 @@ class Music(commands.Cog):
             await ctx.message.add_reaction('⏯')
 
     @commands.command(name='stop', aliases=['بلاع', 'خلص'])
-    @commands.has_permissions(manage_guild=True)
     async def _stop(self, ctx: commands.Context):
         """Stops playing song and clears the queue."""
 
@@ -517,9 +512,9 @@ async def on_message(message):
         sentence = message.content.split("بلعه ل", 1)[1] + " بلاع"
         await message.channel.send(sentence)
     else:
-        if(message.content.startswith(";;p")):
+        if message.content.startswith(";;p"):
             # Gets voice channel of message author
-            voice_channel = message.author.channel
+            voice_channel = message.author.voice.channel
             if voice_channel != None:
                 channel = voice_channel.name
                 vc = await voice_channel.connect()
