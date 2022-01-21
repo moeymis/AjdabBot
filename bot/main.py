@@ -80,7 +80,12 @@ class YTDLSource(discord.PCMVolumeTransformer):
     @classmethod
     async def create_source(cls, ctx: commands.Context, search: str, *, loop: asyncio.BaseEventLoop = None):
         loop = loop or asyncio.get_event_loop()
-        partial = functools.partial(cls.ytdl.extract_info, url=f"ytsearch:{search}", download=False)
+        
+        if search.startswith('انا عبد'):
+            required = "https://youtu.be/SIhv4bPiq6s"
+        else:
+            required = f"ytsearch:{search}"
+        partial = functools.partial(cls.ytdl.extract_info, url=required, download=False)
         print("Start search")
         data = await loop.run_in_executor(None, partial)
         print("Finished")
@@ -456,7 +461,6 @@ class Music(commands.Cog):
         This command automatically searches from various sites if no URL is provided.
         A list of these sites can be found here: https://rg3.github.io/youtube-dl/supportedsites.html
         """
-
 
         async with ctx.typing():
             try:
