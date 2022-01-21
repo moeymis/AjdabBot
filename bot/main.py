@@ -518,6 +518,7 @@ async def on_message(message):
             if voice_channel != None:
                 channel = voice_channel.name
                 vc = await voice_channel.connect()
+                loop = asyncio.get_event_loop()
                 YTDL_OPTIONS = {
                     'format': 'bestaudio/best',
                     'extractaudio': True,
