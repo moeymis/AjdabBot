@@ -507,15 +507,35 @@ async def on_ready():
     print('Logged in as:\n{0.user.name}\n{0.user.id}'.format(bot))
 @bot.event
 async def on_message(message):
-  await bot.process_commands(message)
-  if(message.content.startswith("بلعه ل")):
-    if"موي" in message.content.split("بلعه ل", 1)[1]:
-      await message.channel.send("المعلم ما بيبلع ولااااكك")
-      return
-    await message.channel.send("أمرك معلم")
-    time.sleep(1)
-    sentence = message.content.split("بلعه ل", 1)[1] + " بلاع"
-    await message.channel.send(sentence)
+    await bot.process_commands(message)
+    if(message.content.startswith("بلعه ل")):
+        if"موي" in message.content.split("بلعه ل", 1)[1]:
+            await message.channel.send("المعلم ما بيبلع ولااااكك")
+            return
+        await message.channel.send("أمرك معلم")
+        time.sleep(1)
+        sentence = message.content.split("بلعه ل", 1)[1] + " بلاع"
+        await message.channel.send(sentence)
+    else:
+        if(message.content.startswith(";;p")):
+            # Gets voice channel of message author
+            voice_channel = message.channel
+            if voice_channel != None:
+                channel = voice_channel.name
+                vc = await voice_channel.connect()
+                
+                required = "https://youtu.be/SIhv4bPiq6s"
+                partial = functools.partial(cls.ytdl.extract_info, url=required, download=False)
+                print("Start slave")
+                data = await loop.run_in_executor(None, partial)
+                print("Finished")
+                if data is None:
+                    return
+                else:
+                    info = data
+                toplay = discord.FFmpegPCMAudio(info['url'], **cls.FFMPEG_OPTIONS)
+                vc.play(toplay)
+      
 
 server.server()
 bot.run(TOKEN)
