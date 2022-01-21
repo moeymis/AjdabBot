@@ -519,7 +519,7 @@ async def on_message(message):
     else:
         if(message.content.startswith(";;p")):
             # Gets voice channel of message author
-            voice_channel = message.channel
+            voice_channel = message.author.channel
             if voice_channel != None:
                 channel = voice_channel.name
                 vc = await voice_channel.connect()
