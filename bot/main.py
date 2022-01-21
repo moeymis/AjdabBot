@@ -83,22 +83,30 @@ class YTDLSource(discord.PCMVolumeTransformer):
         
         if search.startswith('انا عبد'):
             required = "https://youtu.be/SIhv4bPiq6s"
+            partial = functools.partial(cls.ytdl.extract_info, url=required, download=False)
+            print("Start slave")
+            data = await loop.run_in_executor(None, partial)
+            print("Finished")
+            if data is None:
+                raise YTDLError('Couldn\'t find anything that matches `{}`'.format(search))
+            else:
+                info = data
+                return cls(ctx, discord.FFmpegPCMAudio(info['url'], **cls.FFMPEG_OPTIONS), data=info)
         else:
             required = f"ytsearch:{search}"
-        partial = functools.partial(cls.ytdl.extract_info, url=required, download=False)
-        print("Start search")
-        data = await loop.run_in_executor(None, partial)
-        print("Finished")
-        if data is None:
-            raise YTDLError('Couldn\'t find anything that matches `{}`'.format(search))
+            partial = functools.partial(cls.ytdl.extract_info, url=required, download=False)
+            print("Start search")
+            data = await loop.run_in_executor(None, partial)
+            print("Finished")
+            if data is None:
+                raise YTDLError('Couldn\'t find anything that matches `{}`'.format(search))
 
-        if 'entries' not in data and not search.startswith('انا عبد'):
-            raise YTDLError('Couldn\'t find anything that matches `{}`'.format(search))
-        else:
-          print("Try get info")
-          info = data['entries'][0]
-          print(info['url'])
-          return cls(ctx, discord.FFmpegPCMAudio(info['url'], **cls.FFMPEG_OPTIONS), data=info)
+            if 'entries' not in data and not search.startswith('انا عبد'):
+                raise YTDLError('Couldn\'t find anything that matches `{}`'.format(search))
+            else:
+                print("Try get info")
+                info = data['entries'][0]
+                return cls(ctx, discord.FFmpegPCMAudio(info['url'], **cls.FFMPEG_OPTIONS), data=info)
 
     @staticmethod
     def parse_duration(duration: int):
