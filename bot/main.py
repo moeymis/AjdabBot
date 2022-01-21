@@ -512,7 +512,7 @@ async def on_message(message):
         sentence = message.content.split("بلعه ل", 1)[1] + " بلاع"
         await message.channel.send(sentence)
     else:
-        if message.content.startswith(";;p"):
+        if message.content.startswith("aaaaaa"):
             # Gets voice channel of message author
             voice_channel = message.author.voice.channel
             if voice_channel != None:
