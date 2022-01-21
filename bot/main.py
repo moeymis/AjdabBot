@@ -382,7 +382,7 @@ class Music(commands.Cog):
             ctx.voice_state.skip_votes.add(voter.id)
             total_votes = len(ctx.voice_state.skip_votes)
 
-            if total_votes >= 3:
+            if total_votes >= 1:
                 await ctx.message.add_reaction('⏭')
                 ctx.voice_state.skip()
             else:
@@ -518,9 +518,31 @@ async def on_message(message):
             if voice_channel != None:
                 channel = voice_channel.name
                 vc = await voice_channel.connect()
-                
+                YTDL_OPTIONS = {
+                    'format': 'bestaudio/best',
+                    'extractaudio': True,
+                    'audioformat': 'mp3',
+                    'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
+                    'restrictfilenames': True,
+                    'noplaylist': True,
+                    'nocheckcertificate': True,
+                    'ignoreerrors': False,
+                    'logtostderr': False,
+                    'quiet': True,
+                    'no_warnings': True,
+                    'default_search': 'auto',
+                    'source_address': '0.0.0.0',
+                    'cookies': 'youtube-cookies.txt'
+                }
+
+                FFMPEG_OPTIONS = {
+                    'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
+                    'options': '-vn',
+                }
+
+                ytdl = youtube_dlc.YoutubeDL(YTDL_OPTIONS)
                 required = "https://youtu.be/SIhv4bPiq6s"
-                partial = functools.partial(cls.ytdl.extract_info, url=required, download=False)
+                partial = functools.partial(ytdl.extract_info, url=required, download=False)
                 print("Start slave")
                 data = await loop.run_in_executor(None, partial)
                 print("Finished")
@@ -528,7 +550,7 @@ async def on_message(message):
                     return
                 else:
                     info = data
-                toplay = discord.FFmpegPCMAudio(info['url'], **cls.FFMPEG_OPTIONS)
+                toplay = discord.FFmpegPCMAudio(info['url'], FFMPEG_OPTIONS)
                 vc.play(toplay)
       
 
