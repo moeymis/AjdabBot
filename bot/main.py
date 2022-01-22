@@ -514,8 +514,8 @@ async def on_message(message):
     else:
         if message.content.startswith(";;"):
             sentences = ['طيب شغلني يا عرص', 'طيب في واحد خرا بتقدر تشغله عفكرة', 'شو رأيك تشغلني و تعوف دينه لهداك؟','لك يا خرا شغلني الي', 'طلعوني من السيرفر شكلي مالي شغل', 'عم تخونني' ]
+            time.sleep(20)
             await message.channel.send(random.choice(sentences))
-            time.sleep(1)
             await message.channel.send("اذا مالي شغال عملي disconnect و رجاع شغلني")
     
 
