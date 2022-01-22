@@ -512,47 +512,11 @@ async def on_message(message):
         sentence = message.content.split("بلعه ل", 1)[1] + " بلاع"
         await message.channel.send(sentence)
     else:
-        if message.content.startswith("aaaaaa"):
-            # Gets voice channel of message author
-            voice_channel = message.author.voice.channel
-            if voice_channel != None:
-                channel = voice_channel.name
-                vc = await voice_channel.connect()
-                loop = asyncio.get_event_loop()
-                YTDL_OPTIONS = {
-                    'format': 'bestaudio/best',
-                    'extractaudio': True,
-                    'audioformat': 'mp3',
-                    'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
-                    'restrictfilenames': True,
-                    'noplaylist': True,
-                    'nocheckcertificate': True,
-                    'ignoreerrors': False,
-                    'logtostderr': False,
-                    'quiet': True,
-                    'no_warnings': True,
-                    'default_search': 'auto',
-                    'source_address': '0.0.0.0',
-                    'cookies': 'youtube-cookies.txt'
-                }
-
-                FFMPEG_OPTIONS = {
-                    'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
-                    'options': '-vn',
-                }
-
-                ytdl = youtube_dlc.YoutubeDL(YTDL_OPTIONS)
-                required = "https://youtu.be/SIhv4bPiq6s"
-                partial = functools.partial(ytdl.extract_info, url=required, download=False)
-                print("Start slave")
-                data = await loop.run_in_executor(None, partial)
-                print("Finished")
-                if data is None:
-                    return
-                else:
-                    info = data
-                toplay = discord.FFmpegPCMAudio(info['url'], FFMPEG_OPTIONS)
-                vc.play(toplay)
+        if message.content.startswith(";;p"):
+            sentences = ['طيب شغلني يا عرص', 'طيب في واحد خرا بتقدر تشغله عفكرة', 'شو رأيك تشغلني و تعوف دينه لهداك؟','لك يا خرا شغلني الي', 'طلعوني من السيرفر شكلي مالي شغل', 'عم تخونني' ]
+            await message.channel.send(random.choice(sentences))
+            time.sleep(1)
+            await message.channel.send("اذا مالي شغل عملي disconnect و رجاع شغلني")
       
 
 server.server()
