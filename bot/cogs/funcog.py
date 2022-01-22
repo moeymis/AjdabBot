@@ -13,7 +13,7 @@ class Fun(commands.Cog):
     async def randomchoice(self, ctx: commands.Context, *, message: str):
         choices = message.split(',')
         choice = random.choice(choices)
-        await message.channel.send("اذا مالي شغال عملي disconnect و رجاع شغلني")
+        await ctx.send(choice)
     
     @commands.Cog.listener("on_message")
     async def on_message(self,message):
