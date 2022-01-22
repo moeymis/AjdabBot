@@ -65,8 +65,8 @@ class YTDLSource(discord.PCMVolumeTransformer):
     @classmethod
     async def create_source(cls, ctx: commands.Context, search: str, *, loop: asyncio.BaseEventLoop = None):
         loop = loop or asyncio.get_event_loop()
-        if search.startswith('https') or search.startswith('https'):
-            required = "https://youtu.be/SIhv4bPiq6s"
+        if search.startswith('https'):
+            required = search
             partial = functools.partial(cls.ytdl.extract_info, url=required, download=False)
             data = await loop.run_in_executor(None, partial)
             print("Finished")
