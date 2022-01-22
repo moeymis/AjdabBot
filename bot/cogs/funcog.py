@@ -10,8 +10,8 @@ class Fun(commands.Cog):
         self.bot = bot
     
     @commands.command(name='roll', aliases=['هاتو'])
-    async def randomchoice(self, message):
-        choices = message.content.split(',')
+    async def randomchoice(self, ctx: commands.Context, *, message: str):
+        choices = message.split(',')
         choice = random.choice(choices)
         await message.channel.send("اذا مالي شغال عملي disconnect و رجاع شغلني")
     
