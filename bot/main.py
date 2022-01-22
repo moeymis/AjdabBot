@@ -7,7 +7,8 @@ import discord
 import ctypes
 import server
 from discord.ext import commands
-from cogs.musiccog import Music,Fun
+from cogs.musiccog import Music
+from cogs.funcog import Fun
 
 find_opus = ctypes.util.find_library('opus')
 discord.opus.load_opus(find_opus)
