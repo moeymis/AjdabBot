@@ -25,6 +25,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         'default_search': 'auto',
         'source_address': '0.0.0.0',
         'cookies': 'youtube-cookies.txt'
+        'force_ipv4': True
     }
 
     FFMPEG_OPTIONS = {
