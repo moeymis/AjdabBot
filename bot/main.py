@@ -516,7 +516,7 @@ async def on_message(message):
             sentences = ['طيب شغلني يا عرص', 'طيب في واحد خرا بتقدر تشغله عفكرة', 'شو رأيك تشغلني و تعوف دينه لهداك؟','لك يا خرا شغلني الي', 'طلعوني من السيرفر شكلي مالي شغل', 'عم تخونني' ]
             await message.channel.send(random.choice(sentences))
             time.sleep(1)
-            await message.channel.send("اذا مالي شغل عملي disconnect و رجاع شغلني")
+            await message.channel.send("اذا مالي شغال عملي disconnect و رجاع شغلني")
       
 
 server.server()
