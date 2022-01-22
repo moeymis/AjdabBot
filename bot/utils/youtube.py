@@ -24,7 +24,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         'no_warnings': True,
         'default_search': 'auto',
         'source_address': '0.0.0.0',
-        'cookies': 'youtube-cookies.txt'
+        'cookies': 'youtube-cookies.txt',
         'force_ipv4': True
     }
 
