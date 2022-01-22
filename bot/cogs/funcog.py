@@ -34,3 +34,12 @@ class Fun(commands.Cog):
             await message.channel.send(random.choice(sentences))
             await message.channel.send("اذا مالي شغال عملي disconnect و رجاع شغلني")
             self.lastfredsentence = datetime.now()
+        elif message.content.startswith("ايري ب"):
+            if"موي" in message.content:
+                await message.channel.send("المعلم ما بيبلع ولااااكك")
+                return
+            sentences = ['حصل بصراحة', 'اتفق', 'فعلا', 'له له', 'لك طول بالك يا زلمة', 'يا عيب الشوم', 'معك حق', '++']
+            await message.channel.send(random.choice(sentences))
+        elif message.content.startswith("عبد كول خرا"):
+            sentences = ['بتأمر معلم', 'بتمون انت', 'طيب خلص لا تصرعنا', 'طيب اوكي', 'طيب شو دخلني لك عيسى', 'أمرك', 'ملطشة يلي خلقك لأني', 'لك انت كول خرا ولا']
+            await message.channel.send(random.choice(sentences))
