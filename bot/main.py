@@ -512,12 +512,12 @@ async def on_message(message):
         sentence = message.content.split("بلعه ل", 1)[1] + " بلاع"
         await message.channel.send(sentence)
     else:
-        if message.content.startswith(";;p"):
+        if message.content.startswith(";;"):
             sentences = ['طيب شغلني يا عرص', 'طيب في واحد خرا بتقدر تشغله عفكرة', 'شو رأيك تشغلني و تعوف دينه لهداك؟','لك يا خرا شغلني الي', 'طلعوني من السيرفر شكلي مالي شغل', 'عم تخونني' ]
             await message.channel.send(random.choice(sentences))
             time.sleep(1)
             await message.channel.send("اذا مالي شغال عملي disconnect و رجاع شغلني")
-      
+    
 
 server.server()
 bot.run(TOKEN)
