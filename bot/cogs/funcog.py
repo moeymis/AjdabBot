@@ -8,7 +8,13 @@ class Fun(commands.Cog):
     def __init__(self, bot):
         self.lastfredsentence = datetime.now()
         self.bot = bot
-  
+    
+    @commands.command(name='roll', aliases=['هاتو'])
+    async def randomchoice(self, message):
+        choices = message.content.split(',')
+        choice = random.choice(choices)
+        await message.channel.send("اذا مالي شغال عملي disconnect و رجاع شغلني")
+    
     @commands.Cog.listener("on_message")
     async def on_message(self,message):
         if(message.content.startswith("بلعه ل")):
@@ -19,13 +25,12 @@ class Fun(commands.Cog):
             time.sleep(1)
             sentence = message.content.split("بلعه ل", 1)[1] + " بلاع"
             await message.channel.send(sentence)
-        else:
-            if message.content.startswith(";;"):
-                now = datetime.now()
-                diff = self.lastfredsentence - now
-                if diff < 15:
-                    return
-                sentences = ['طيب شغلني يا عرص', 'طيب في واحد خرا بتقدر تشغله عفكرة', 'شو رأيك تشغلني و تعوف دينه لهداك؟','لك يا خرا شغلني الي', 'طلعوني من السيرفر شكلي مالي شغل', 'عم تخونني' ]
-                await message.channel.send(random.choice(sentences))
-                await message.channel.send("اذا مالي شغال عملي disconnect و رجاع شغلني")
-                self.lastfredsentence = datetime.now()
+        elif message.content.startswith(";;"):
+            now = datetime.now()
+            diff = self.lastfredsentence - now
+            if diff < 15:
+                return
+            sentences = ['طيب شغلني يا عرص', 'طيب في واحد خرا بتقدر تشغله عفكرة', 'شو رأيك تشغلني و تعوف دينه لهداك؟','لك يا خرا شغلني الي', 'طلعوني من السيرفر شكلي مالي شغل', 'عم تخونني' ]
+            await message.channel.send(random.choice(sentences))
+            await message.channel.send("اذا مالي شغال عملي disconnect و رجاع شغلني")
+            self.lastfredsentence = datetime.now()
