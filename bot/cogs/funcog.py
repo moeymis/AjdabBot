@@ -5,8 +5,8 @@ class Fun(commands.Cog):
   def __init__(self, bot):
         self.bot = bot
   
-  @commands.Cog.listener()
-  async def on_message(message):
+  @commands.Cog.listener("on_message")
+  async def on_message(self,message):
       if(message.content.startswith("بلعه ل")):
           if"موي" in message.content.split("بلعه ل", 1)[1]:
               await message.channel.send("المعلم ما بيبلع ولااااكك")
