@@ -13,7 +13,7 @@ class Music(commands.Cog):
     def get_voice_state(self, ctx: commands.Context):
         state = self.voice_states.get(ctx.guild.id)
         if not state:
-            state = VoiceState(self, self.bot, ctx)
+            state = VoiceState(self.bot, ctx)
             self.voice_states[ctx.guild.id] = state
 
         return state
@@ -34,10 +34,6 @@ class Music(commands.Cog):
 
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
         await ctx.send('An error occurred: {}'.format(str(error)))
-    
-    def delete_guild(self, ctx: commands.Context):
-        print("Delete guild")
-        del self.voice_states[ctx.guild.id]
 
     @commands.command(name='join', invoke_without_subcommand=True)
     async def _join(self, ctx: commands.Context):
@@ -75,7 +71,7 @@ class Music(commands.Cog):
             return await ctx.send('Not connected to any voice channel.')
 
         await ctx.voice_state.stop()
-        self.delete_guild(ctx)
+        del self.voice_states[ctx.guild.id]
 
     @commands.command(name='volume')
     async def _volume(self, ctx: commands.Context, *, volume: int):
