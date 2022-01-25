@@ -2,6 +2,7 @@ import discord
 import itertools
 import asyncio
 import random
+from cogs.musiccog import Music
 from discord.ext import commands
 from utils.youtube import YTDLSource
 from async_timeout import timeout
@@ -54,7 +55,7 @@ class SongQueue(asyncio.Queue):
 
 
 class VoiceState:
-    def __init__(self, bot: commands.Bot, ctx: commands.Context):
+    def __init__(self, cog: Music, bot: commands.Bot, ctx: commands.Context):
         self.bot = bot
         self._ctx = ctx
 
@@ -67,7 +68,7 @@ class VoiceState:
         self._volume = 0.5
         self.skip_votes = set()
 
-        self.audio_player = bot.loop.create_task(self.audio_player_task())
+        self.audio_player = bot.loop.create_task(self.audio_player_task(cog, ctx))
 
     def __del__(self):
         self.audio_player.cancel()
@@ -92,7 +93,7 @@ class VoiceState:
     def is_playing(self):
         return self.voice and self.current
 
-    async def audio_player_task(self):
+    async def audio_player_task(self, cog: Music, ctx: commands.Context):
         while True:
             self.next.clear()
             if not self.loop:
@@ -105,6 +106,7 @@ class VoiceState:
                         self.current = await self.songs.get()
                 except asyncio.TimeoutError:
                     self.bot.loop.create_task(self.stop())
+                    cog.delete_guild(ctx)
                     return
             self.current.source.volume = self._volume
             self.voice.play(self.current.source, after=self.play_next_song)
