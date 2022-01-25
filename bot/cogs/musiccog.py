@@ -15,7 +15,7 @@ class Music(commands.Cog):
         if not state:
             state = VoiceState(self.bot, ctx)
             self.voice_states[ctx.guild.id] = state
-        print("Current state : " + state)
+        print("Current state : " + str(state))
         return state
 
     def cog_unload(self):
