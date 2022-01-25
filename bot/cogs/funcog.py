@@ -27,7 +27,7 @@ class Fun(commands.Cog):
             await message.channel.send(sentence)
         elif message.content.startswith(";;"):
             now = datetime.now()
-            diff = self.lastfredsentence.seconds - now
+            diff = self.lastfredsentence - now
             if diff.seconds < 15:
                 return
             sentences = ['طيب شغلني يا عرص', 'طيب في واحد خرا بتقدر تشغله عفكرة', 'شو رأيك تشغلني و تعوف دينه لهداك؟','لك يا خرا شغلني الي', 'طلعوني من السيرفر شكلي مالي شغل', 'عم تخونني' ]
