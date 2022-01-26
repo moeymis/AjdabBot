@@ -28,11 +28,11 @@ class Fun(commands.Cog):
         elif message.content.startswith(";;"):
             now = datetime.now()
             diff = self.lastfredsentence - now
-            if diff.seconds < 15:
+            if diff.seconds < 40:
                 return
             sentences = ['طيب شغلني يا عرص', 'طيب في واحد خرا بتقدر تشغله عفكرة', 'شو رأيك تشغلني و تعوف دينه لهداك؟','لك يا خرا شغلني الي', 'طلعوني من السيرفر شكلي مالي شغل', 'عم تخونني' ]
             await message.channel.send(random.choice(sentences))
-            await message.channel.send("اذا مالي شغال عملي disconnect و رجاع شغلني")
+            await message.channel.send("صرت شغال انا عفكرة بدون تصليح")
             self.lastfredsentence = datetime.now()
         elif message.content.startswith("ايري ب"):
             if"موي" in message.content:
