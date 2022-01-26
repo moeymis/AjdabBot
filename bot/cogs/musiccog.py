@@ -13,7 +13,7 @@ class Music(commands.Cog):
     def get_voice_state(self, ctx: commands.Context):
         state = self.voice_states.get(ctx.guild.id)
         if not state:
-            state = VoiceState(self.bot, ctx)
+            state = VoiceState(self, self.bot, ctx)
             self.voice_states[ctx.guild.id] = state
         print("Current state : " + state)
         return state
