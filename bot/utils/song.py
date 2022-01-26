@@ -92,7 +92,7 @@ class VoiceState:
     def is_playing(self):
         return self.voice and self.current
 
-    async def audio_player_task(self, cog: Music, ctx: commands.Context):
+    async def audio_player_task(self, cog, ctx: commands.Context):
         while True:
             self.next.clear()
             if not self.loop:
