@@ -17,6 +17,7 @@ class Fun(commands.Cog):
     
     @commands.Cog.listener("on_message")
     async def on_message(self,message):
+        return
         if(message.content.startswith("بلعه ل")):
             if"موي" in message.content.split("بلعه ل", 1)[1]:
                 await message.channel.send("المعلم ما بيبلع ولااااكك")
